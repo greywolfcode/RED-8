@@ -11,31 +11,33 @@ Red [
     Needs: ["View"]
 ]
 
+#include %lib\fixed-ints.red
+
 ;----Program Data----
 
 ram: vector! 4096       ;4kb of ram
 pc: 0                   ;program counter
-I: make integer! 0        ;index register
-delay-timer: make integer! 0
-sound-timer: make integer! 0
+I: make int16! [val: 0]        ;index register
+delay-timer: make int8! [val: 0] 
+sound-timer: make int8! [val: 0] 
 
 ;----Variables----
-V0: make integer! 0
-V1: make integer! 0
-V2: make integer! 0
-V3: make integer! 0
-V4: make integer! 0
-V5: make integer! 0
-V6: make integer! 0
-V7: make integer! 0
-V8: make integer! 0
-V9: make integer! 0
-VA: make integer! 0
-VB: make integer! 0
-VC: make integer! 0
-VD: make integer! 0
-VE: make integer! 0
-VF: make integer! 0
+V0: make int8! [val: 0] 
+V1: make int8! [val: 0] 
+V2: make int8! [val: 0] 
+V3: make int8! [val: 0] 
+V4: make int8! [val: 0] 
+V5: make int8! [val: 0] 
+V6: make int8! [val: 0] 
+V7: make int8! [val: 0] 
+V8: make int8! [val: 0] 
+V9: make int8! [val: 0] 
+VA: make int8! [val: 0] 
+VB: make int8! [val: 0] 
+VC: make int8! [val: 0] 
+VD: make int8! [val: 0] 
+VE: make int8! [val: 0] 
+VF: make int8! [val: 0] 
 
 view [
     title "RED-8"
