@@ -43,3 +43,37 @@ int8!: object [
     ]
 
 ]
+
+int16!: object [
+    val: integer!
+
+    wrap: func [] [
+        val: val and FFFFh
+    ]
+
+    add: func [
+        operand [integer!]
+    ][
+        val: val + operand 
+        wrap
+    ]
+    sub: func [
+        operand [integer!]
+    ][
+        val: val - operand 
+        wrap
+    ]
+    mult: func [
+        operand [integer!]
+    ][
+        val: val * operand 
+        wrap
+    ]
+    div: func [
+        operand [integer!]
+    ][
+        val: val / operand 
+        wrap
+    ]
+
+]
