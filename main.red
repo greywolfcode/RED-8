@@ -12,6 +12,7 @@ Red [
 ]
 
 #include %lib\fixed-ints.red
+#include %lib\stack.red
 
 ;----Program Data----
 
@@ -20,6 +21,7 @@ pc: 0                   ;program counter
 I: make int16! [val: 0]        ;index register
 delay-timer: make int8! [val: 0] 
 sound-timer: make int8! [val: 0] 
+stack: make stack!
 
 ;----Variables----
 V0: make int8! [val: 0] 
