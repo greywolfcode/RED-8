@@ -1,0 +1,5 @@
+# compiled CHIP-8 data
+.ch8
+
+# config files
+.conf
