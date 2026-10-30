@@ -18,30 +18,41 @@ int8!: object [
     ]
 
     add: func [
-        operand [integer!]
+        operand [integer! object!]
     ][
-        val: val + operand 
+        switch type? operand [
+            integer! [val: val + operand]
+            object! [val: val + operand/val] ;--assumes the new obejct will be an int8! or int16!
+        ]
         wrap
     ]
     sub: func [
-        operand [integer!]
+        operand [integer! object!]
     ][
-        val: val - operand 
+        switch type? operand [
+            integer! [val: val - operand]
+            object! [val: val - operand/val] ;--assumes the new obejct will be an int8! or int16!
+        ]
         wrap
     ]
     mult: func [
-        operand [integer!]
+        operand [integer! object!]
     ][
-        val: val * operand 
+        switch type? operand [
+            integer! [val: val * operand]
+            object! [val: val * operand/val] ;--assumes the new obejct will be an int8! or int16!
+        ]
         wrap
     ]
     div: func [
-        operand [integer!]
+        operand [integer! object!]
     ][
-        val: val / operand 
+        switch type? operand [
+            integer! [val: val / operand]
+            object! [val: val / operand/val] ;--assumes the new obejct will be an int8! or int16!
+        ]
         wrap
     ]
-
 ]
 
 int16!: object [
@@ -52,28 +63,39 @@ int16!: object [
     ]
 
     add: func [
-        operand [integer!]
+        operand [integer! object!]
     ][
-        val: val + operand 
+        switch type? operand [
+            integer! [val: val + operand]
+            object! [val: val + operand/val] ;--assumes the new obejct will be an int8! or int16!
+        ]
         wrap
     ]
     sub: func [
-        operand [integer!]
+        operand [integer! object!]
     ][
-        val: val - operand 
+        switch type? operand [
+            integer! [val: val - operand]
+            object! [val: val - operand/val] ;--assumes the new obejct will be an int8! or int16!
+        ]
         wrap
     ]
     mult: func [
-        operand [integer!]
+        operand [integer! object!]
     ][
-        val: val * operand 
+        switch type? operand [
+            integer! [val: val * operand]
+            object! [val: val * operand/val] ;--assumes the new obejct will be an int8! or int16!
+        ]
         wrap
     ]
     div: func [
-        operand [integer!]
+        operand [integer! object!]
     ][
-        val: val / operand 
+        switch type? operand [
+            integer! [val: val / operand]
+            object! [val: val / operand/val] ;--assumes the new obejct will be an int8! or int16!
+        ]
         wrap
     ]
-
 ]
