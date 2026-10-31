@@ -22,6 +22,7 @@ I: make int16! [val: 0]        ;index register
 delay-timer: make int8! [val: 0] 
 sound-timer: make int8! [val: 0] 
 stack: make stack! []
+screen: make image! [64x32 0.0.0]
 
 ;----Variables----
 V0: make int8! [val: 0] 
@@ -44,5 +45,5 @@ VF: make int8! [val: 0]
 view [
     title "RED-8"
     below
-    base 64x32
+    image screen
 ]
