@@ -20,6 +20,7 @@ toml: object [ ;--in toml "namespace"
             case [ 
                 string? value [append output rejoin [key " = ^"" value "^""]]
                 integer? value [append output rejoin [key " = " value ]]
+                float? value [append output rejoin [key " = " value ]]
             ]
 
             append output "^/"
@@ -34,5 +35,6 @@ toml: object [ ;--in toml "namespace"
 a: object [
     asl: "asdf"
     asdf: 1234
+    asdfg: 2.34
 ]
 print toml/serialize a
