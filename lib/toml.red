@@ -31,17 +31,3 @@ toml: object [ ;--in toml "namespace"
         output ;--return value
     ]
 ]
-
-;--Test Code
-;--TODO: Remove later
-a: object [
-    asl: "asdf"
-    asdf: 1234
-    asdfg: 2.34
-    asdfgh: true
-    asdfghj: object [
-        asdf: "asdf"
-        ert: 6
-    ]
-]
-print toml/serialize a
