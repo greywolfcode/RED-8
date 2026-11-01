@@ -21,6 +21,7 @@ toml: object [ ;--in toml "namespace"
                 string? value [append output rejoin [key " = ^"" value "^""]]
                 integer? value [append output rejoin [key " = " value ]]
                 float? value [append output rejoin [key " = " value ]]
+                logic? value [append output rejoin [key " = " value ]]
             ]
 
             append output "^/"
@@ -36,5 +37,6 @@ a: object [
     asl: "asdf"
     asdf: 1234
     asdfg: 2.34
+    asdfgh: true
 ]
 print toml/serialize a
