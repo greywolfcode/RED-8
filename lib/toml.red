@@ -30,4 +30,11 @@ toml: object [ ;--in toml "namespace"
 
         output ;--return value
     ]
+    save: func [
+        file [file!]
+        data [object!]
+    ][
+        toml-data: toml/serialize data
+        write file toml-data
+    ]
 ]
