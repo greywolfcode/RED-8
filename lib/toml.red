@@ -14,7 +14,7 @@ toml: object [ ;--in toml "namespace"
     serialize: function [
         data [object!]
     ][
-        output: ""
+        output: copy ""
         foreach key words-of data [
             value: get in data key
             case [ 
@@ -22,6 +22,7 @@ toml: object [ ;--in toml "namespace"
                 integer? value [append output rejoin [key " = " value ]]
                 float? value [append output rejoin [key " = " value ]]
                 logic? value [append output rejoin [key " = " value ]]
+                object? value [append output rejoin ["^/[" key "]^/" toml/serialize value]]
             ]
 
             append output "^/"
@@ -38,5 +39,9 @@ a: object [
     asdf: 1234
     asdfg: 2.34
     asdfgh: true
+    asdfghj: object [
+        asdf: "asdf"
+        ert: 6
+    ]
 ]
 print toml/serialize a
