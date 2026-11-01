@@ -11,7 +11,7 @@ Red [
 ]
 
 toml: object [ ;--in toml "namespace"
-    serialize: func [
+    serialize: function [
         data [object!]
     ][
         output: ""
