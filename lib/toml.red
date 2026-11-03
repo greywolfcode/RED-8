@@ -8,6 +8,10 @@ Red [
 		Distributed under the MIT License.
 		See ../LICENSE
 	}
+    Notes: {
+        This library only supports basic toml (string, integer, float, boolean, and basic tables).
+        It is meant to be used by its own output, and will break if used with malformed files.
+    }
 ]
 
 toml: object [ ;--in toml "namespace"
