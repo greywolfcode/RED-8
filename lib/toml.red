@@ -125,4 +125,10 @@ toml: object [ ;--in toml "namespace"
         
         output ;--return value
     ]
+    load: func [
+        file [file!]
+    ][
+        toml-data: read file
+        output: toml/deserialize toml-data ;--return value
+    ]
 ]
