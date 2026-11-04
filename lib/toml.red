@@ -115,6 +115,10 @@ toml: object [ ;--in toml "namespace"
                     i: inc i length? data
                     current-char: to string! pick data i
                 ]
+                if i = length? data [ ;--don't skip final charachter when at end of the file
+                    current-string: rejoin [current-string current-char]
+                ]
+                                
                 case [
                     parse current-string float [value: to float! current-string]
                     parse current-string integer [value: to integer! current-string]
