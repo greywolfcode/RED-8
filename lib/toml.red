@@ -71,7 +71,7 @@ toml: object [ ;--in toml "namespace"
         while [i < length? data] [ ;--i will be incremented to length of data during parsing
             current-char: to string! pick data i 
 
-            while [parse current-char newline] [
+            while [(parse current-char newline) and (i <> length? data)] [
                 i: inc i length? data
                 current-char: to string! pick data i
             ]
@@ -95,7 +95,7 @@ toml: object [ ;--in toml "namespace"
                 current-string: ""
             ] [ ;--regular data
                 ;--find key name
-                while [(not parse current-char key-seperator)] [ 
+                while [(not parse current-char key-seperator) and (i <> length? data)] [ 
                     current-string: rejoin [current-string current-char]
                     i: inc i length? data
                     current-char: to string! pick data i
