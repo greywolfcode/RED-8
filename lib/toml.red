@@ -90,7 +90,7 @@ toml: object [ ;--in toml "namespace"
                 current-char: pick data i
 
                 new-map: make map! []
-                put current-map current-string new-map
+                put current-map to set-word! current-string new-map
                 current-map: new-map
                 current-string: ""
             ] [ ;--regular data
@@ -121,12 +121,12 @@ toml: object [ ;--in toml "namespace"
                     parse current-string logic [value: to logic! current-string]
                     parse current-string string [value: copy/part at current-string 2 ((length? current-string) - 2)] ;--remove quotes
                 ]
-                put current-map key value
+                put current-map to set-word! key value
 
                 current-string: ""
             ]
         ]
-        
+    
         output ;--return value
     ]
     load: func [
