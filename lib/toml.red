@@ -120,6 +120,7 @@ toml: object [ ;--in toml "namespace"
                     parse current-string integer [value: to integer! current-string]
                     parse current-string logic [value: to logic! current-string]
                     parse current-string string [value: copy/part at current-string 2 ((length? current-string) - 2)] ;--remove quotes
+                    true [value: ""] ;--default value
                 ]
                 put current-map to set-word! key value
 
