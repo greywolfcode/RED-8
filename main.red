@@ -11,8 +11,13 @@ Red [
     Needs: ["View"]
 ]
 
+#include %config-handler.red
+
 #include %lib\fixed-ints.red
 #include %lib\stack.red
+
+;----Load Data----
+config: config-handler/read-config
 
 ;----Program Data----
 
