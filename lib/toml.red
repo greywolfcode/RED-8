@@ -55,11 +55,11 @@ toml: object [ ;--in toml "namespace"
     ][
         ;--Rules
         digit:   charset "0123456789"
-        letters: charset [#"a" - #"z" #"A" - #"Z"]
+        letters: complement charset [#"^""] ;--any char but double quote
         integer: [["-" some  digit] | some digit]
         float:   [integer "." some digit]
         logic:   ["true" | "false"]
-        string:  ["^"" some letters "^""]
+        string:  ["^"" any letters "^""]
         key-seperator: [space | "="]
         newline: [#"^M" | #"^/"] ;--need to check for CR and LF
 
@@ -118,7 +118,7 @@ toml: object [ ;--in toml "namespace"
                 if i = length? data [ ;--don't skip final charachter when at end of the file
                     current-string: rejoin [current-string current-char]
                 ]
-                                
+
                 case [
                     parse current-string float [value: to float! current-string]
                     parse current-string integer [value: to integer! current-string]
