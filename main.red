@@ -49,12 +49,19 @@ VD: make int8! [val: 0]
 VE: make int8! [val: 0] 
 VF: make int8! [val: 0] 
 
+;----Interpreter Functions----
+func process-instruction [] [
+
+]
+
 ;----Load Program----
 if (config/program-data/path <> "") and (exists? to file! config/program-data/path) [
     program-source: read/binary to file! config/program-data/path
     insert at ram 513 program-source ;--at index 512 (1 base indexing)
 ]
 
+
+;----Setup UI----
 window: layout [
     title "RED-8"
     size 640x320
@@ -71,6 +78,23 @@ window/actors: context [ ;--set event handelers
         display/draw: compose [image screen 0x0 (display/size)]
         show display
     ]
+    on-time: func [
+        face 
+        event
+    ] [
+        print 8
+    ]
 ]
 
-view/options window [flags: [resize]]
+view/options/no-wait window [flags: [resize]] ;--allow interpreter loop to handle events
+
+forever [
+    do-events/no-wait
+    wait 0.01
+
+    if none? window/state [
+        break
+    ]
+
+    process-instruction
+]
