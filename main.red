@@ -24,7 +24,7 @@ config: config-handler/read-config
 ram: make block! 4096      ;4kb of ram
 insert/dup ram 0 4096
 
-pc: 0                   ;program counter
+pc: 513 ;program counter - set to first byte of code
 I: make int16! [val: 0]        ;index register
 delay-timer: make int8! [val: 0] 
 sound-timer: make int8! [val: 0] 
