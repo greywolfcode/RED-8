@@ -55,8 +55,21 @@ if (config/program-data/path <> "") and (exists? to file! config/program-data/pa
     insert at ram 513 program-source ;--at index 512 (1 base indexing)
 ]
 
-view [
+window: layout [
     title "RED-8"
-    below
-    image screen
+    size 500x500
+    
+    display: image screen 
 ]
+
+window/actors: context [ ;--set event handelers
+    on-resize: func [
+        face 
+        event
+    ] [
+        display/size/x: face/size/x
+        display/size/y: face/size/y
+    ]
+]
+
+view/options window [flags: [resize]]
