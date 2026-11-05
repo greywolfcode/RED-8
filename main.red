@@ -57,9 +57,9 @@ if (config/program-data/path <> "") and (exists? to file! config/program-data/pa
 
 window: layout [
     title "RED-8"
-    size 500x500
+    size 640x320
     
-    display: image screen 
+    display: base 640x320 draw [image screen 0x0 640x320]
 ]
 
 window/actors: context [ ;--set event handelers
@@ -67,8 +67,9 @@ window/actors: context [ ;--set event handelers
         face 
         event
     ] [
-        display/size/x: face/size/x
-        display/size/y: face/size/y
+        display/size: face/size
+        display/draw: compose [image screen 0x0 (display/size)]
+        show display
     ]
 ]
 
