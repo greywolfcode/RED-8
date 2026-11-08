@@ -57,7 +57,10 @@ func process-instruction [] [
 ;----Load Program----
 if (config/program-data/path <> "") and (exists? to file! config/program-data/path) [
     program-source: read/binary to file! config/program-data/path
-    insert at ram 513 program-source ;--at index 512 (1 base indexing)
+    forall program-source [
+        index: index? program-source
+        insert at ram (513 + index) first program-source ;--at index 512 (1 base indexing)
+    ]
 ]
 
 
