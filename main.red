@@ -69,20 +69,18 @@ window: layout [
     display: base 640x320 draw [image screen 0x0 640x320]
 ]
 
+update-display: func [] [
+    display/draw: compose [image screen 0x0 (display/size)]
+    show display
+]
+
 window/actors: context [ ;--set event handelers
     on-resize: func [
         face 
         event
     ] [
         display/size: face/size
-        display/draw: compose [image screen 0x0 (display/size)]
-        show display
-    ]
-    on-time: func [
-        face 
-        event
-    ] [
-        print 8
+        update-display
     ]
 ]
 
@@ -97,4 +95,5 @@ forever [
     ]
 
     process-instruction
+    update-display
 ]
