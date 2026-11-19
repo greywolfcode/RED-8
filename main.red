@@ -248,12 +248,12 @@ either debug [
     fill-ram-display: func [
         start-pos [integer!]
     ][
-        repeat i 4 [
-            repeat j 8 [
-                current-byte-name: rejoin ["byte-" to-string j "x" to-string i]
+        repeat y-index 4 [
+            repeat x-index 8 [
+                current-byte-name: rejoin ["byte-" to-string x-index "x" to-string y-index]
                 current-display-byte: to-word current-byte-name
 
-                current-byte-val: rejoin ["0x" to-string to-hex/size to-integer pick ram (start-pos + i + j) 2] ;-format byte values
+                current-byte-val: rejoin ["0x" to-string to-hex/size to-integer pick ram (start-pos + y-index + x-index) 2] ;-format byte values
                 set in get current-display-byte 'text current-byte-val
             ]
         ]
