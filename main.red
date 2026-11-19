@@ -59,11 +59,11 @@ get-register-name: func [
     num [integer!]
 ][
     hex-chars: "0123456789ABCDEF"
-
+    
     ;--create register name as word
     register-num: pick hex-chars (num + 1)
     register-name: to-word rejoin ["V" register-num] 
-    register: registers/(register-name) ;--return value
+    register: get in registers register-name ;--return value
 ]
 
 process-instruction: func [] [
@@ -103,11 +103,11 @@ process-instruction: func [] [
             I: make int16! [val: NNN]
         ]
         0Dh [ ;--display - DXYN
-            x-reg-val: get get-register-name X
-            y-reg-val: get get-register-name Y
-            x-coord: x-reg-val/val and 3Fh ;--mod 64 wrap around
-            y-coord: y-reg-val/val and 20h ;--mod 32 wrap around
-            registers/VF: make int8! [val: 0] 
+            x-reg-val: get-register-name X
+            y-reg-val: get-register-name Y
+            x-coord: (get in x-reg-val 'val) and 3Fh ;--mod 64 wrap around
+            y-coord: (get in y-reg-val 'val) and 20h ;--mod 32 wrap around
+            registers/VF: make int8! [val: 1]  
 
             repeat y-count N [
                 current-y-coord: y-coord + y-count
