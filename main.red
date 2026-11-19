@@ -259,7 +259,7 @@ either debug [
         ]
     ]
 
-    fill-ram-display current-ram-display-byte
+    fill-ram-display current-ram-display-index
 
     update-display: func [] [
         ;update screen display
