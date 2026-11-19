@@ -150,6 +150,9 @@ if (config/program-data/path <> "") and (exists? to file! config/program-data/pa
 
 ;----Setup UI----
 either debug [
+    ;--extrea debug variables
+    current-ram-display-index: 0
+
     window: layout [
         title "RED-8"
         below
@@ -180,16 +183,83 @@ either debug [
         ]
         panel [
             across
-            ram-display: panel 620x200 [
-                ram-data: panel
+            ram-display: panel 620x180 [
+                below
+                row-1: panel [
+                    origin 0x0
+                    space 0x0
+                    across
+                    byte-1x1: text "0x00"
+                    byte-2x1: text "0x00"
+                    byte-3x1: text "0x00"
+                    byte-4x1: text "0x00"
+                    byte-5x1: text "0x00"
+                    byte-6x1: text "0x00"
+                    byte-7x1: text "0x00"
+                    byte-8x1: text "0x00"
+                ]
+                row-2: panel [
+                    origin 0x0
+                    space 0x0
+                    across
+                    byte-1x2: text "0x00"
+                    byte-2x2: text "0x00"
+                    byte-3x2: text "0x00"
+                    byte-4x2: text "0x00"
+                    byte-5x2: text "0x00"
+                    byte-6x2: text "0x00"
+                    byte-7x2: text "0x00"
+                    byte-8x2: text "0x00"
+                ]
+                row-3: panel [
+                    origin 0x0
+                    space 0x0
+                    across
+                    byte-1x3: text "0x00"
+                    byte-2x3: text "0x00"
+                    byte-3x3: text "0x00"
+                    byte-4x3: text "0x00"
+                    byte-5x3: text "0x00"
+                    byte-6x3: text "0x00"
+                    byte-7x3: text "0x00"
+                    byte-8x3: text "0x00"
+                ]
+                row-4: panel [
+                    origin 0x0
+                    space 0x0
+                    across
+                    byte-1x4: text "0x00"
+                    byte-2x4: text "0x00"
+                    byte-3x4: text "0x00"
+                    byte-4x4: text "0x00"
+                    byte-5x4: text "0x00"
+                    byte-6x4: text "0x00"
+                    byte-7x4: text "0x00"
+                    byte-8x4: text "0x00"
+                ]
             ]
-            scroll-bar: scroller 20x200 [
-                max-scroll: max 0 (ram-data/size/y - window/size/y) 
-
-                ram-data/offset/y: (face/data * (negate max-scroll))
+            scroll-bar: scroller 20x180 [
+                current-scroll: face/data
+                current-ram-display-index: to-integer ((round (current-scroll * 511)) * 8 + 1) ;--1 to 4096, steps of 8
+                fill-ram-display current-ram-display-index
             ]
         ]
     ]
+    fill-ram-display: func [
+        start-pos [integer!]
+    ][
+        repeat i 4 [
+            repeat j 8 [
+                current-byte-name: rejoin ["byte-" to-string j "x" to-string i]
+                current-display-byte: to-word current-byte-name
+
+                current-byte-val: rejoin ["0x" to-string to-hex/size to-integer pick ram (start-pos + i + j) 2] ;-format byte values
+                set in get current-display-byte 'text current-byte-val
+            ]
+        ]
+    ]
+
+    fill-ram-display current-ram-display-byte
 
     update-display: func [] [
         ;update screen display
