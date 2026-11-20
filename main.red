@@ -96,8 +96,7 @@ process-instruction: func [] [
         ]
         07h [ ;--add - 7XNN
             register-name: get-register-name X
-            register: get register-name
-            register/add NN
+            (register-name)/add NN
         ]
         0Ah [ ;--set index - ANNN
             I: make int16! [val: NNN]
